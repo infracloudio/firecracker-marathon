@@ -2,15 +2,6 @@ package runtime
 
 type UUID string
 
-// type Executor interface {
-// 	CreateEnvironment() error
-// 	StartEnvironment() error
-// 	StopEnvironment() error
-// 	AttachCodeToEnvironment() error
-// 	ExecuteCodeInEnvironment() error
-// 	TerminateEnvironment() error
-// }
-
 type Runtime interface {
 	CreateEnv(language string) UUID            // Creates microvm with Env, Embed Enviroment Server, Returns UUID
 	AttachCodeToEnv(uuid UUID, tarPath string) // Attach code to MicroVM

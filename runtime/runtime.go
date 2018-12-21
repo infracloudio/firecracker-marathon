@@ -2,19 +2,20 @@ package runtime
 
 import (
 	"context"
+	"errors"
 	"fmt"
-	"os"
-	"path/filepath"
-	"time"
-
-	firecracker "github.com/firecracker-microvm/firecracker-go-sdk"
+	"github.com/firecracker-microvm/firecracker-go-sdk"
 	"github.com/infracloudio/firecracker-marathon/logging"
 	log "github.com/sirupsen/logrus"
+	"os"
 )
 
 const (
-	firecrackerBinaryPath        = "firecracker"
 	firecrackerBinaryOverrideEnv = "FC_TEST_BIN"
+	// TODO: Get rid of these sockets
+	firecrackerSocketPath = "/tmp/firecracker.socket"
+	firecrackerGoVmLinux = "../environments/go/hello-vmlinux.bin"
+	firecrackerGoExt4 = "../environments/go/hello-rootfs.ext4"
 )
 
 type Executor struct {
@@ -28,51 +29,61 @@ func (r *Executor) CreateEnv(language string) error {
 
 	// TODO check from pool of VMs if asked environment is running or not
 	// if yes then, dont start a new environment
-
-	socketPath := "/tmp/firecracker.socket"
-	logger := log.NewEntry(logging.NewLogger())
-	firecrackerClient := firecracker.NewFirecrackerClient(socketPath, logger, true)
-	fmt.Println(firecrackerClient)
-
-	defer removeSocket(socketPath)
+	socketPath := firecrackerSocketPath
 
 	// Create Machine instance
 	cfg := firecracker.Config{
-		Debug:           true,
-		KernelImagePath: "../environments/go/debian-vmlinux",
-		RootDrive: firecracker.BlockDevice{
-			HostPath: "../environments/go/debian.ext4",
-			Mode:     "ro",
-		},
 		SocketPath:  socketPath,
-		CPUTemplate: firecracker.CPUTemplate(firecracker.CPUTemplateT2),
+		LogFifo: "/tmp/log.fifo",
+		LogLevel: "Debug",
+		MetricsFifo: "/tmp/metrics.fifo",
+		KernelImagePath: firecrackerGoVmLinux,
+		KernelArgs: "console=ttyS0 reboot=k panic=1 pci=off",
+		RootDrive: firecracker.BlockDevice{
+			HostPath: firecrackerGoExt4,
+			Mode:     "rw",
+		},
 		CPUCount:    int64(1),
-		MemInMiB:    int64(128),
+		CPUTemplate: firecracker.CPUTemplate(firecracker.CPUTemplateT2),
 		HtEnabled:   false,
+		MemInMiB:    int64(128),
+		Debug: 		 true,
 	}
+
+	logger := log.NewEntry(logging.NewLogger())
+	m, err := firecracker.NewMachine(cfg, firecracker.WithLogger(logger))
+	if err != nil {
+		log.Fatalf("unexpected error: %v", err)
+	}
+
+	log.Printf("Calling machine init")
 
 	ctx := context.Background()
-	cmd := firecracker.VMCommandBuilder{}.
-		WithSocketPath(socketPath).
-		WithBin(getFirecrackerBinaryPath()).
-		Build(ctx)
-
-	m, err := firecracker.NewMachine(cfg, firecracker.WithProcessRunner(cmd))
+	vmmCtx, vmmCancel := context.WithCancel(ctx)
+	exitchan, err := m.Init(ctx)
 	if err != nil {
-		log.Fatalf("unexpectd error: %v", err)
+		log.Errorf("Firecracker init returned ")
+		return err
 	}
 
-	vmmCtx, vmmCancel := context.WithTimeout(ctx, 30*time.Second)
-	defer vmmCancel()
-	exitchannel := make(chan error)
 	go func() {
-		exitCh, err := m.Init(vmmCtx)
-		if err != nil {
-			close(exitchannel)
-			log.Fatalf("Failed to start VMM: %v", err)
-		}
-		exitchannel <- <-exitCh
-		close(exitchannel)
+		<-exitchan
+		vmmCancel()
+	}()
+
+
+	log.Printf("Calling start instance")
+
+	err = m.StartInstance(vmmCtx)
+	if err != nil {
+		return errors.New("can't start firecracker - make sure it's in your path.")
+	}
+
+	log.Printf("Instance creation was successful")
+
+	//}()
+	go func() {
+		<- vmmCtx.Done()
 	}()
 	return nil
 }
@@ -84,12 +95,7 @@ func (r *Executor) CreateEnv(language string) error {
 // 	return nil
 // }
 
-func getFirecrackerBinaryPath() string {
-	if val := os.Getenv(firecrackerBinaryOverrideEnv); val != "" {
-		return val
-	}
-	return filepath.Join("/usr/local/bin", firecrackerBinaryPath)
-}
+
 
 func removeSocket(socketPath string) {
 	err := os.Remove(socketPath)
