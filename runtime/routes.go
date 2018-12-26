@@ -1,4 +1,4 @@
-package server
+package runtime
 
 import (
 	"fmt"
@@ -14,10 +14,11 @@ type Route struct {
 
 const APIVersion = "v1"
 
-func (g *gatewayAPI) Routes() []*Route {
+func (r *runtimeAPI) Routes() []*Route {
 	return []*Route{
-		{verb: "GET", path: path("upload", APIVersion), fn: g.uploadFunction},
-		{verb: "GET", path: path("execute/{name}", APIVersion), fn: g.execute},
+		//		{verb: "GET", path: path("upload", APIVersion), fn: g.uploadFunction},
+		{verb: "POST", path: path("instance/start", APIVersion), fn: r.startInstance},
+		{verb: "GET", path: path("instance/get/{id}", APIVersion), fn: r.getInstance},
 	}
 }
 

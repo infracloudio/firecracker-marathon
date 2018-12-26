@@ -1,7 +1,7 @@
 package main
 
-import "github.com/infracloudio/firecracker-marathon/server"
+import "github.com/infracloudio/firecracker-marathon/runtime"
 
 func main() {
-	server.Start()
+	runtime.Start()
 }

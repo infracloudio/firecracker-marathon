@@ -1,4 +1,4 @@
-package server
+package runtime
 
 import (
 	"context"
@@ -12,8 +12,8 @@ import (
 )
 
 func Start() {
-	g := newGatewayAPI()
-	routes := g.Routes()
+	r := newRuntimeAPI()
+	routes := r.Routes()
 	startServer(routes)
 }
 
@@ -28,11 +28,11 @@ func startServer(routes []*Route) {
 	}
 
 	server := &http.Server{
-		Addr:    ":8080",
+		Addr:    ":8383",
 		Handler: router,
 	}
 
-	logger.Info("Server listening")
+	logger.Info("Runtime Server listening")
 	go func() {
 		err = server.ListenAndServe()
 		if err != nil && err != http.ErrServerClosed {
@@ -44,13 +44,13 @@ func startServer(routes []*Route) {
 	quit := make(chan os.Signal)
 	signal.Notify(quit, os.Interrupt)
 	<-quit
-	logger.Info("Shutdown Server ...")
+	logger.Info("Shutdown Runtime Server ...")
 
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 	err = server.Shutdown(ctx)
 	if err != nil {
-		logger.Fatalf("Server Shutdown: %s", err)
+		logger.Fatalf("Runtime Server Shutdown: %s", err)
 	}
-	logger.Info("Server exiting")
+	logger.Info("Runtime Server exiting")
 }

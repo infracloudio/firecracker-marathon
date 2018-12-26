@@ -1,0 +1,19 @@
+[33mcommit f9f6a17dc2401601925c3d618edec741017bbcab[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: Sanket Sudake <sanket@infracloud.io>
+Date:   Fri Dec 21 16:15:08 2018 +0530
+
+    Runtime code fixes
+
+[33mcommit 50c37893f169a534fee07f43242fbebdd883b79e[m
+Author: Sanket Sudake <sanket@infracloud.io>
+Date:   Fri Dec 21 12:57:11 2018 +0530
+
+    Add gitignore
+
+[33mcommit 78fd530f242508bf91eb9bc145722c81840c7e9f[m
+Author: Imran Pochi <imran@infracloud.io>
+Date:   Thu Dec 20 15:44:45 2018 +0530
+
+    initital commit
+    
+    Signed-off-by: Imran Pochi <imran@infracloud.io>
