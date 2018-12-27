@@ -1,7 +1,6 @@
 package gateway
 
 import (
-	"fmt"
 	"net/http"
 )
 
@@ -11,8 +10,6 @@ type Route struct {
 	path string
 	fn   func(http.ResponseWriter, *http.Request)
 }
-
-const APIVersion = "v1"
 
 func (g *gatewayAPI) Routes() []*Route {
 	return []*Route{
@@ -24,14 +21,6 @@ func (g *gatewayAPI) Routes() []*Route {
 	}
 }
 
-func getVersion(route, version string) string {
-	path := "/" + version + "/" + route
-	fmt.Println("Path - ", path)
+func path(route, version string) string {
 	return "/" + version + "/" + route
 }
-
-func path(route, version string) string {
-	return getVersion(route, version)
-}
-
-// 	{verb: "GET", path: "/startVM", fn: },

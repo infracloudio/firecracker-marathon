@@ -24,15 +24,16 @@ func startServer(routes []*Route) {
 	router := mux.NewRouter()
 
 	for _, v := range routes {
+		logger.Info("Route ", v.verb, " - ", v.path)
 		router.Methods(v.verb).Path(v.path).HandlerFunc(v.fn)
 	}
 
 	server := &http.Server{
-		Addr:    ":8080",
+		Addr:    ":" + GatewayDefaultPort,
 		Handler: router,
 	}
 
-	logger.Info("Server listening")
+	logger.Info("Server listening ...")
 	go func() {
 		err = server.ListenAndServe()
 		if err != nil && err != http.ErrServerClosed {

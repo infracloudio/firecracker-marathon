@@ -12,13 +12,6 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-const (
-	KernelAndRootFSLocation = "/var/environments"
-	RootFS                  = "root-go.ext4"
-	Kernel                  = "vmlinux-go.bin"
-	FirecrackerBinaryPath   = "/usr/local/bin"
-)
-
 type Executor struct {
 }
 
@@ -137,17 +130,6 @@ func (r *Executor) StartInstance(c config.Runtime) error {
 	// 	return errors.New("can't start firecracker - make sure it's in your path.")
 	// }
 	return nil
-}
-
-// func (r *Runtime) ExecuteCodeInEnvironment() error {
-
-// 	//
-
-// 	return nil
-// }
-
-func getFirecrackerBinaryPath() string {
-	return filepath.Join(FirecrackerBinaryPath, "firecracker")
 }
 
 func removeSocket(socketPath string) {
