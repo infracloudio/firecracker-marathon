@@ -106,19 +106,9 @@ func (r *Executor) StartInstance(c config.Runtime) error {
 		SocketPath:  conf.SocketPath,
 		CPUTemplate: firecracker.CPUTemplate(firecracker.CPUTemplateT2),
 		CPUCount:    int64(1),
-		CPUTemplate: firecracker.CPUTemplate(firecracker.CPUTemplateT2),
-		HtEnabled:   false,
 		MemInMiB:    int64(128),
-		Debug:       true,
+		HtEnabled:   false,
 	}
-
-	logger := log.NewEntry(logging.NewLogger())
-	m, err := firecracker.NewMachine(cfg, firecracker.WithLogger(logger))
-	if err != nil {
-		log.Fatalf("unexpected error: %v", err)
-	}
-
-	log.Printf("Calling machine init")
 
 	ctx := context.Background()
 	m, err := firecracker.NewMachine(cfg, firecracker.WithLogger(logger))
