@@ -1,7 +1,6 @@
 package gateway
 
 import (
-	"fmt"
 	"net/http"
 )
 
@@ -24,14 +23,6 @@ func (g *gatewayAPI) Routes() []*Route {
 	}
 }
 
-func getVersion(route, version string) string {
-	path := "/" + version + "/" + route
-	fmt.Println("Path - ", path)
+func path(route, version string) string {
 	return "/" + version + "/" + route
 }
-
-func path(route, version string) string {
-	return getVersion(route, version)
-}
-
-// 	{verb: "GET", path: "/startVM", fn: },
