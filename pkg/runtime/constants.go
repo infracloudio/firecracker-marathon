@@ -6,4 +6,3 @@ const (
 	Kernel                  = "vmlinux-go.bin"
 	FirecrackerBinaryPath   = "/usr/local/bin"
 )
-
