@@ -29,7 +29,7 @@ func startServer(routes []*Route) {
 	}
 
 	server := &http.Server{
-		Addr:    ":8080",
+		Addr:    ":" + GatewayDefaultPort,
 		Handler: router,
 	}
 

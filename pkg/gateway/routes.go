@@ -11,8 +11,6 @@ type Route struct {
 	fn   func(http.ResponseWriter, *http.Request)
 }
 
-const APIVersion = "v1"
-
 func (g *gatewayAPI) Routes() []*Route {
 	return []*Route{
 		{verb: "POST", path: path("function", APIVersion), fn: g.uploadFunction},

@@ -7,12 +7,6 @@ import (
 	"github.com/infracloudio/firecracker-marathon/pkg/runtime"
 )
 
-const (
-	defaultHost = "localhost"
-	defaultPort = "8383"
-	apiVersion  = "v1"
-)
-
 type gatewayAPI struct {
 }
 
@@ -41,10 +35,6 @@ func (g *gatewayAPI) getFunction(w http.ResponseWriter, r *http.Request) {
 }
 
 func (g *gatewayAPI) executeFunction(w http.ResponseWriter, r *http.Request) {
-
-
-
-
 	cfg := config.Runtime{
 		Environment: config.Environment{
 			Language: config.Go,
@@ -55,8 +45,4 @@ func (g *gatewayAPI) executeFunction(w http.ResponseWriter, r *http.Request) {
 	ex.StartInstance(cfg)
 
 	w.Write([]byte("test"))
-}
-
-func getDefaultURL() string {
-	return "http://" + defaultHost + ":" + defaultPort
 }
