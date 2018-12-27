@@ -1,7 +1,6 @@
 package gateway
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/infracloudio/firecracker-marathon/pkg/config"
@@ -50,8 +49,6 @@ func (g *gatewayAPI) executeFunction(w http.ResponseWriter, r *http.Request) {
 		},
 		FunctionUUID: "uuid",
 	}
-
-	fmt.Println(cfg)
 	// Create a client call to Runtime
 	c, err := client.NewClient(defaultHost, apiVersion, "")
 	if err != nil {
@@ -63,8 +60,6 @@ func (g *gatewayAPI) executeFunction(w http.ResponseWriter, r *http.Request) {
 	if resp.Error() != nil {
 		http.Error(w, resp.FormatError().Error(), http.StatusInternalServerError)
 	}
-
-	fmt.Println("Whats the response ---- ", resp.Body)
 }
 
 func getDefaultURL() string {

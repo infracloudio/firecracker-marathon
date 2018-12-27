@@ -86,16 +86,6 @@ func CreateTAPDevice() {
 	}
 	fmt.Println(string(cmdOutput.Bytes()))
 
-	// fmt.Println("Does this happen ???")
-	// cmd = exec.Command("ip", "addr", "add", "10.1.0.10/24", "dev", "firecracker0")
-	// cmdOutput = &bytes.Buffer{}
-	// cmd.Stdout = cmdOutput
-	// err = cmd.Run()
-	// if err != nil {
-	// 	os.Stderr.WriteString(err.Error())
-	// }
-
-	fmt.Println("Does this happen again ???")
 	cmd = exec.Command("brctl", "addif", "docker0", "firecracker0")
 	cmdOutput = &bytes.Buffer{}
 	cmd.Stdout = cmdOutput
