@@ -156,6 +156,12 @@
 
 [[projects]]
   branch = "master"
+  name = "github.com/songgao/water"
+  packages = ["."]
+  revision = "bf1a5d02778fcf40c282de352a53b1fe1f5b9f96"
+
+[[projects]]
+  branch = "master"
   name = "golang.org/x/crypto"
   packages = ["ssh/terminal"]
   revision = "505ab145d0a99da450461ae2c1a9f6cd10d1f447"
@@ -174,7 +180,8 @@
   name = "golang.org/x/sys"
   packages = [
     "unix",
-    "windows"
+    "windows",
+    "windows/registry"
   ]
   revision = "074acd46bca67915925527c07849494d115e7c43"
 
@@ -209,6 +216,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "626316819ff5e0a5164f601620f691cf9678d121d2fc7480d6d1433614fcfb87"
+  inputs-digest = "59000de791d6ed9e517042fcfcd243decf170e655ae6e2d8e9a8b139ace85282"
   solver-name = "gps-cdcl"
   solver-version = 1

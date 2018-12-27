@@ -1,4 +1,4 @@
-package server
+package gateway
 
 import (
 	"context"
@@ -8,7 +8,7 @@ import (
 	"time"
 
 	"github.com/gorilla/mux"
-	"github.com/infracloudio/firecracker-marathon/logging"
+	"github.com/infracloudio/firecracker-marathon/pkg/logging"
 )
 
 func Start() {
