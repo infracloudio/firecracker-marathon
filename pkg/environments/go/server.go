@@ -9,7 +9,7 @@ import (
 	"path/filepath"
 	"plugin"
 
-	"github.com/infracloudio/firecracker-marathon/environments/go/context"
+	"github.com/infracloudio/firecracker-marathon/pkg/environments/go/context"
 )
 
 const (

@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/infracloudio/firecracker-marathon/config"
-	"github.com/infracloudio/firecracker-marathon/gateway/client"
+	"github.com/infracloudio/firecracker-marathon/pkg/config"
+	"github.com/infracloudio/firecracker-marathon/pkg/gateway/client"
 )
 
 const (

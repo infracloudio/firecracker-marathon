@@ -3,7 +3,7 @@ package runtime
 import (
 	"net/http"
 
-	"github.com/infracloudio/firecracker-marathon/config"
+	"github.com/infracloudio/firecracker-marathon/pkg/config"
 )
 
 type runtimeAPI struct {
