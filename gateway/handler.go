@@ -22,19 +22,23 @@ func newGatewayAPI() *gatewayAPI {
 }
 
 func (g *gatewayAPI) uploadFunction(w http.ResponseWriter, r *http.Request) {
-
+	w.WriteHeader(http.StatusInternalServerError)
+	return
 }
 
 func (g *gatewayAPI) updateFunction(w http.ResponseWriter, r *http.Request) {
-
+	w.WriteHeader(http.StatusInternalServerError)
+	return
 }
 
 func (g *gatewayAPI) deleteFunction(w http.ResponseWriter, r *http.Request) {
-
+	w.WriteHeader(http.StatusInternalServerError)
+	return
 }
 
 func (g *gatewayAPI) getFunction(w http.ResponseWriter, r *http.Request) {
-
+	w.WriteHeader(http.StatusInternalServerError)
+	return
 }
 
 func (g *gatewayAPI) executeFunction(w http.ResponseWriter, r *http.Request) {
