@@ -6,11 +6,12 @@ type Runtime struct {
 }
 
 type RunConfig struct {
-	Language   ProgrammingLanguage
-	SocketPath string
-	KernelPath string
-	KernelOpts string
-	RootDrive  string
+	Language       ProgrammingLanguage
+	SocketPath     string
+	KernelPath     string
+	KernelOpts     string
+	RootDrive      string
+	SecondaryDrive string
 }
 
 type Network struct {

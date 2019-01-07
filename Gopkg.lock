@@ -28,7 +28,7 @@
     "client/models",
     "client/operations"
   ]
-  revision = "6b08ec75eaf3f7dc350cf017433485ccb5754c75"
+  revision = "3f6d97e4035b8af50e50948b286b45bac94c97c6"
 
 [[projects]]
   branch = "master"
@@ -45,32 +45,32 @@
     ".",
     "internal"
   ]
-  revision = "c701774f4e604d952e4e8c56dee260be696e33c3"
-  version = "v0.17.2"
+  revision = "e2f3fdbb7ed0e56e070ccbfb6fc75b288a33c014"
+  version = "v0.18.0"
 
 [[projects]]
   name = "github.com/go-openapi/errors"
   packages = ["."]
-  revision = "d9664f9fab8994271e573ed69cf2adfc09b7a800"
-  version = "v0.17.2"
+  revision = "7a7ff1b7b8020f22574411a32f28b4d168d69237"
+  version = "v0.18.0"
 
 [[projects]]
   name = "github.com/go-openapi/jsonpointer"
   packages = ["."]
   revision = "ef5f0afec364d3b9396b7b77b43dbe26bf1f8004"
-  version = "v0.17.2"
+  version = "v0.18.0"
 
 [[projects]]
   name = "github.com/go-openapi/jsonreference"
   packages = ["."]
   revision = "8483a886a90412cd6858df4ea3483dce9c8e35a3"
-  version = "v0.17.2"
+  version = "v0.18.0"
 
 [[projects]]
   name = "github.com/go-openapi/loads"
   packages = ["."]
-  revision = "150d36912387ec2f607be674c5be309ddccc0eed"
-  version = "v0.17.2"
+  revision = "74628589c3b94e3526a842d24f46589980f5ab22"
+  version = "v0.18.0"
 
 [[projects]]
   name = "github.com/go-openapi/runtime"
@@ -84,32 +84,32 @@
     "middleware/untyped",
     "security"
   ]
-  revision = "231d7876b7019dbcbfc97a7ba764379497b67c1d"
-  version = "v0.17.2"
+  revision = "41e24cc66d7af6af39eb9b5a6418e901bcdd333c"
+  version = "v0.18.0"
 
 [[projects]]
   name = "github.com/go-openapi/spec"
   packages = ["."]
-  revision = "5bae59e25b21498baea7f9d46e9c147ec106a42e"
-  version = "v0.17.2"
+  revision = "5b6cdde3200976e3ecceb2868706ee39b6aff3e4"
+  version = "v0.18.0"
 
 [[projects]]
   name = "github.com/go-openapi/strfmt"
   packages = ["."]
-  revision = "edab9990ffc9b4a428f3306ecf4d18a069ca3317"
-  version = "v0.17.2"
+  revision = "e471370ae57ac74eaf0afe816a66e4ddd7f1b027"
+  version = "v0.18.0"
 
 [[projects]]
   name = "github.com/go-openapi/swag"
   packages = ["."]
-  revision = "5899d5c5e619fda5fa86e14795a835f473ca284c"
-  version = "v0.17.2"
+  revision = "1d29f06aebd59ccdf11ae04aa0334ded96e2d909"
+  version = "v0.18.0"
 
 [[projects]]
   name = "github.com/go-openapi/validate"
   packages = ["."]
   revision = "d2eab7d93009e9215fc85b2faa2c2f2a98c2af48"
-  version = "v0.17.2"
+  version = "v0.18.0"
 
 [[projects]]
   name = "github.com/gorilla/context"
@@ -173,7 +173,7 @@
     "context",
     "idna"
   ]
-  revision = "e147a9138326bc0e9d4e179541ffd8af41cff8a9"
+  revision = "927f97764cc334a6575f4b7a1584a147864d5723"
 
 [[projects]]
   branch = "master"
@@ -183,7 +183,7 @@
     "windows",
     "windows/registry"
   ]
-  revision = "074acd46bca67915925527c07849494d115e7c43"
+  revision = "9a3f9b0469bbc6b8802087ae5c0af9f61502de01"
 
 [[projects]]
   name = "golang.org/x/text"
